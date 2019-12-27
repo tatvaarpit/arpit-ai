@@ -1,8 +1,7 @@
-<mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" formControlName="search" placeholder="Filter">
-</mat-form-field>
-
-<div class="mat-elevation-z8">
+<div class="mat-table-div">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" formControlName="search" placeholder="Search by title">
+  </mat-form-field>
   <table mat-table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="title">
