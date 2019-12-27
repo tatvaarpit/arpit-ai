@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class CommonService {
   url : string = "https://hn.algolia.com/api/v1/search_by_date?tags=story";
+
   constructor(private httpClient: HttpClient) { }
 
   /**

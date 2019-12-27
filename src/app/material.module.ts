@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { MatTableModule, MatSortModule, MatPaginatorModule, MatSort, MatInputModule, MatDialogModule, MatButtonModule } from '@angular/material';
+import { MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule, MatDialogModule, MatButtonModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({

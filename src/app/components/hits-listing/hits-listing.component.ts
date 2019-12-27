@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTable, MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
-
+import { FormControl } from '@angular/forms';
+import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
+import { interval } from 'rxjs';
+import { startWith, switchMap } from 'rxjs/operators';
 
 //componens 
 import { DialogComponent } from '../dialog/dialog.component';
@@ -10,9 +12,8 @@ import { Hit } from '../../models/hits'
 
 //services
 import { CommonService } from 'src/app/services/common.service';
-import { interval } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
+
+
 
 @Component({
     selector: 'app-hits-listing',
@@ -30,9 +31,10 @@ export class HitsListingComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
     constructor(private commonService: CommonService, private matDialog: MatDialog) {
-        interval(1000).pipe( startWith(0),() => this.commonService.getHitsListing()).subscribe(
+
+        // call api every 10 secs
+        interval(10000).pipe( startWith(0),switchMap(() => this.commonService.getHitsListing())).subscribe(
             (hits) => {
-                console.log(hits);
                 if (typeof hits.hits != typeof undefined) {
                     this.dataSource = new MatTableDataSource(hits.hits);
                     this.init();
